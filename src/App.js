@@ -1,19 +1,23 @@
-import { useState } from 'react';
 import './App.css';
-import Form from './components/Form';
-import PokemonDetails from './components/PokemonDetails';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import PokemonSearchPage from './pages/PokemonSearchPage'
+import AccountPage from './pages/AccountPage';
 
 function App() {
-
-  const [pokemonDetails, setPokemonDetails] = useState([])
-
   return (
-    <div className = 'container'>
-      <h1>Pokeapi</h1> 
-        < Form setPokemonDetails={setPokemonDetails}/>
-        < PokemonDetails pokemonDetails={pokemonDetails}/>   
+    <div>
+      < BrowserRouter>
+        <nav className='App'>
+          <Link to="/" >Accueil</Link>
+          <Link to="/search" >Rechercher un pokémon</Link>
+          <Link to="/account" >Mon profil</Link>
+        </nav>
+        < Switch>
+          <Route path="/search" component={PokemonSearchPage}/>
+          <Route path="/account" component={AccountPage}/>
+        </Switch>
+      </BrowserRouter>
     </div>
-
   );
 }
 
